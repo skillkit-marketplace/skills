@@ -1,0 +1,34 @@
+{
+  "name": "@rfxlamia/sm",
+  "version": "1.0.0",
+  "description": "Interactive CLI installer for SkillKit Marketplace — community skills & agents",
+  "type": "module",
+  "bin": {
+    "sm": "./bin/skillkit.js"
+  },
+  "files": [
+    "bin/",
+    "src/",
+    "skills-manifest.json",
+    "skills/",
+    "agents/"
+  ],
+  "scripts": {
+    "prepublishOnly": "node ../scripts/generate-manifest.js && npm run clean-assets && cp -r ../skills ./skills && cp -r ../agents ./agents",
+    "postpublish": "npm run clean-assets",
+    "clean-assets": "rm -rf ./skills ./agents 2>/dev/null; true",
+    "test": "node --test src/**/*.test.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "@clack/prompts": "^0.9.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/skillkit-marketplace/skills.git"
+  },
+  "author": "rfxlamia",
+  "license": "Apache-2.0"
+}
